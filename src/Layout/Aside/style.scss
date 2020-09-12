@@ -1,0 +1,23 @@
+nav {
+  width: 100px;
+  height: 100vh;
+  background-color: #03254c;
+  position: fixed;
+  left: 0;
+  grid-column: 1;
+  grid-row: 2;
+
+  hr {
+    width: 75%;
+    border-top: none;
+    border-bottom: 1px solid #eaeaea;
+  }
+
+  li {
+    padding: 16px 8px;
+    text-align: center;
+    box-sizing: border-box;
+    font-size: 2rem;
+    color: #eaeaea;
+  }
+}

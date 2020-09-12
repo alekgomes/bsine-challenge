@@ -1,0 +1,11 @@
+header {
+    width: calc(100vw - 100px);
+    height: 64px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    box-sizing: border-box;
+    padding: 16px 8px;
+    grid-row: 1;
+    grid-column: 2;
+}
