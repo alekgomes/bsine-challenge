@@ -1,0 +1,27 @@
+.card {
+  h1 {
+    text-align: left;
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 1.4rem;
+  }
+
+  span {
+    display: inline-block;
+    text-align: left;
+    font-size: 0.8rem;
+    width: 100%;
+  }
+
+  .body {
+    text-align: left;
+  }
+
+  .remove {
+    border: none;
+    border-radius: 3px;
+    background-color: tomato;
+    color: #eaeaea;
+    width: 100%;
+  }
+}
