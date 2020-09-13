@@ -55,7 +55,7 @@ form textarea {
   border-radius: 3px;
   background-color: tomato;
   color: #eaeaea;
-  width: 100%;
+  float: right;
 }
 section.lane {
   width: 20%;

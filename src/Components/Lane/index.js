@@ -14,7 +14,7 @@ const Lane = ({ title, id }) => {
       <h1 className="title">{title}</h1>
       <FormNewCard id={id} />
       {cardInformation.map((info) => (
-        <Card key={info.title} title={info.title} body={info.body} />
+        <Card key={info.title} laneId={id} title={info.title} body={info.body} />
       ))}
     </section>
   );

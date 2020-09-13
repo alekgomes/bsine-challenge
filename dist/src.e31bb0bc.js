@@ -28499,10 +28499,24 @@ var LaneProvider = function LaneProvider(_ref) {
     setSate(currState);
   };
 
+  var removeInfos = function removeInfos() {
+    var laneId = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "lane01";
+    var infoTitle = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "Title";
+
+    var currState = _objectSpread({}, state);
+
+    var itemIdex = currState[laneId].infos.findIndex(function (title) {
+      return title === infoTitle;
+    });
+    currState[laneId].infos.splice(itemIdex, 1);
+    setSate(currState);
+  };
+
   return /*#__PURE__*/_react.default.createElement(LaneContext.Provider, {
     value: {
       state: state,
-      addInfos: addInfos
+      addInfos: addInfos,
+      removeInfos: removeInfos
     }
   }, children);
 };
@@ -28570,6 +28584,7 @@ var FormNewCard = function FormNewCard(_ref) {
       title: title,
       body: body
     });
+    setShowButton(true);
   };
 
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, showButton ? /*#__PURE__*/_react.default.createElement("button", {
@@ -28616,27 +28631,39 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
 require("./style.scss");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _LaneContext = require("../../Context/LaneContext");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 var Card = function Card(_ref) {
   var title = _ref.title,
-      body = _ref.body;
+      body = _ref.body,
+      laneId = _ref.laneId;
+
+  var _useContext = (0, _react.useContext)(_LaneContext.LaneContext),
+      removeInfos = _useContext.removeInfos;
+
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "card"
   }, /*#__PURE__*/_react.default.createElement("h1", null, title), /*#__PURE__*/_react.default.createElement("p", {
     className: "body"
   }, body), /*#__PURE__*/_react.default.createElement("button", {
+    onClick: function onClick() {
+      return removeInfos(laneId, title);
+    },
     className: "remove"
-  }, "remover"));
+  }, "X"));
 };
 
 var _default = Card;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","./style.scss":"Components/Card/style.scss"}],"Components/Lane/style.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./style.scss":"Components/Card/style.scss","../../Context/LaneContext":"Context/LaneContext.js"}],"Components/Lane/style.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -28682,6 +28709,7 @@ var Lane = function Lane(_ref) {
   }), cardInformation.map(function (info) {
     return /*#__PURE__*/_react.default.createElement(_Card.default, {
       key: info.title,
+      laneId: id,
       title: info.title,
       body: info.body
     });

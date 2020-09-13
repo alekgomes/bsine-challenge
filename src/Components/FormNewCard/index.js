@@ -14,6 +14,7 @@ const FormNewCard = ({ id }) => {
   const hadleSubmit = (e) => {
     e.preventDefault();
     addInfos(id, { title, body });
+    setShowButton(true)
   };
 
   return (

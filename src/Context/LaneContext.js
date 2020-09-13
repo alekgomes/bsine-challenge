@@ -16,8 +16,15 @@ export const LaneProvider = ({ children }) => {
     setSate(currState);
   };
 
+  const removeInfos = (laneId="lane01", infoTitle="Title") => {
+    const currState = { ...state };
+    const itemIdex = currState[laneId].infos.findIndex((title) => title === infoTitle)
+    currState[laneId].infos.splice(itemIdex, 1)
+    setSate(currState)
+  }
+
   return (
-    <LaneContext.Provider value={{ state, addInfos }}>
+    <LaneContext.Provider value={{ state, addInfos, removeInfos }}>
       {children}
     </LaneContext.Provider>
   );
