@@ -1,41 +1,36 @@
 import React, { useState } from "react";
-import Card from "../Card";
 
 import "./style.scss";
 
-const FormNewCard = ({ addCard, setIsEditing }) => {
+const FormNewCard = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    addCard[1]([
-      ...addCard[0],
-      <Card title={title} body={body} />,
-    ]);
-    setTitle("");
-    setBody("");
-    setIsEditing(false);
-  };
+  const [showButton, setShowButton] = useState(true);
 
   return (
-    <form>
-      <p>
-        <input
-          type="text"
-          placeholder="Título"
-          onChange={(e) => setTitle(e.target.value)}
-        />
-      </p>
-      <p>
-        <textarea
-          type="text"
-          placeholder="Mensagem"
-          onChange={(e) => setBody(e.target.value)}
-        />
-      </p>
-      <button onClick={(e) => handleSubmit(e)}>Salvar</button>
-    </form>
+    <>
+      {showButton ? (
+        <button onClick={() => setShowButton(false)}>
+          <ion-icon name="add-outline"></ion-icon>
+        </button>
+      ) : (
+        <form>
+          <input
+            type="text"
+            placeholder="Título"
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <textarea
+            type="text"
+            placeholder="Mensagem"
+            onChange={(e) => setBody(e.target.value)}
+          />
+          <button>Salvar</button>
+          <button onClick={() => setShowButton(true)}>Cancelar</button>
+        </form>
+      )}
+    </>
   );
 };
 

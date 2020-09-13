@@ -1,28 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import Aside from "./Layout/Aside";
 import Header from "./Layout/Header";
 import Lane from "./Components/Lane";
 import Main from "./Layout/Main";
-import Card from "./Components/Card";
+import { LaneProvider } from "./Context/LaneContext";
 import "./style.scss";
 
 const App = () => {
-  const [cardsPlanejada, setCardsPlanejada] = useState([<Card title="Card 01" body={"planejada"} />])
-  const [cardsExecutando, setCardsExecutando] = useState([<Card title="Card 01" body={"Executando"} />])
-  const [cardsImpasse, setCardsImpasse] = useState([<Card title="Card 01" body={"Impasse"} />])
-  const [cardsFinalizada, setCardsFinalizada] = useState([<Card title="Card 01" body={"Finalizada"} />])
-
   return (
     <>
       <Header />
       <Aside />
-      <Main>
-        <Lane title="Planejada" cards={[cardsPlanejada, setCardsPlanejada]} />
-        <Lane title="Executando" cards={[cardsExecutando, setCardsExecutando]} />
-        <Lane title="Impasse" cards={[cardsImpasse, setCardsImpasse]} />
-        <Lane title="Finalizada" cards={[cardsFinalizada, setCardsFinalizada]} />
-      </Main>
+      <LaneProvider>
+        <Main>
+          <Lane title="Planejada" />
+          <Lane title="Executando" />
+          <Lane title="Impasse" />
+          <Lane title="Finalizada" />
+        </Main>
+      </LaneProvider>
     </>
   );
 };

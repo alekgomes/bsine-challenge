@@ -28418,40 +28418,7 @@ var Header = function Header() {
 
 var _default = Header;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","./style.scss":"Layout/Header/style.scss"}],"Components/Card/style.scss":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/parcel/src/builtins/css-loader.js"}],"Components/Card/index.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-require("./style.scss");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Card = function Card(_ref) {
-  var title = _ref.title,
-      body = _ref.body;
-  return /*#__PURE__*/_react.default.createElement("div", {
-    className: "card"
-  }, /*#__PURE__*/_react.default.createElement("h1", null, title), /*#__PURE__*/_react.default.createElement("span", null, "Data"), /*#__PURE__*/_react.default.createElement("p", {
-    className: "body"
-  }, body), /*#__PURE__*/_react.default.createElement("button", {
-    className: "remove"
-  }, "remover"));
-};
-
-var _default = Card;
-exports.default = _default;
-},{"react":"../node_modules/react/index.js","./style.scss":"Components/Card/style.scss"}],"Components/FormNewCard/style.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./style.scss":"Layout/Header/style.scss"}],"Components/FormNewCard/style.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -28466,23 +28433,11 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _Card = _interopRequireDefault(require("../Card"));
-
 require("./style.scss");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -28496,10 +28451,7 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-var FormNewCard = function FormNewCard(_ref) {
-  var addCard = _ref.addCard,
-      setIsEditing = _ref.setIsEditing;
-
+var FormNewCard = function FormNewCard() {
   var _useState = (0, _react.useState)(""),
       _useState2 = _slicedToArray(_useState, 2),
       title = _useState2[0],
@@ -28510,39 +28462,70 @@ var FormNewCard = function FormNewCard(_ref) {
       body = _useState4[0],
       setBody = _useState4[1];
 
-  var handleSubmit = function handleSubmit(e) {
-    e.preventDefault();
-    addCard[1]([].concat(_toConsumableArray(addCard[0]), [/*#__PURE__*/_react.default.createElement(_Card.default, {
-      title: title,
-      body: body
-    })]));
-    setTitle("");
-    setBody("");
-    setIsEditing(false);
-  };
+  var _useState5 = (0, _react.useState)(true),
+      _useState6 = _slicedToArray(_useState5, 2),
+      showButton = _useState6[0],
+      setShowButton = _useState6[1];
 
-  return /*#__PURE__*/_react.default.createElement("form", null, /*#__PURE__*/_react.default.createElement("p", null, /*#__PURE__*/_react.default.createElement("input", {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, showButton ? /*#__PURE__*/_react.default.createElement("button", {
+    onClick: function onClick() {
+      return setShowButton(false);
+    }
+  }, /*#__PURE__*/_react.default.createElement("ion-icon", {
+    name: "add-outline"
+  })) : /*#__PURE__*/_react.default.createElement("form", null, /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
     placeholder: "T\xEDtulo",
     onChange: function onChange(e) {
       return setTitle(e.target.value);
     }
-  })), /*#__PURE__*/_react.default.createElement("p", null, /*#__PURE__*/_react.default.createElement("textarea", {
+  }), /*#__PURE__*/_react.default.createElement("textarea", {
     type: "text",
     placeholder: "Mensagem",
     onChange: function onChange(e) {
       return setBody(e.target.value);
     }
-  })), /*#__PURE__*/_react.default.createElement("button", {
-    onClick: function onClick(e) {
-      return handleSubmit(e);
+  }), /*#__PURE__*/_react.default.createElement("button", null, "Salvar"), /*#__PURE__*/_react.default.createElement("button", {
+    onClick: function onClick() {
+      return setShowButton(true);
     }
-  }, "Salvar"));
+  }, "Cancelar")));
 };
 
 var _default = FormNewCard;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","../Card":"Components/Card/index.js","./style.scss":"Components/FormNewCard/style.scss"}],"Components/Lane/style.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./style.scss":"Components/FormNewCard/style.scss"}],"Context/LaneContext.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.LaneProvider = exports.LaneContext = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+var state = {
+  lane1: [["item01", "item02"]],
+  lane2: [],
+  lane3: [],
+  lane4: []
+};
+var LaneContext = (0, _react.createContext)(state);
+exports.LaneContext = LaneContext;
+
+var LaneProvider = function LaneProvider(_ref) {
+  var children = _ref.children;
+  return /*#__PURE__*/_react.default.createElement(LaneContext.Provider, {
+    value: state
+  }, children);
+};
+
+exports.LaneProvider = LaneProvider;
+},{"react":"../node_modules/react/index.js"}],"Components/Lane/style.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -28559,6 +28542,8 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _FormNewCard = _interopRequireDefault(require("../FormNewCard"));
 
+var _LaneContext = require("../../Context/LaneContext");
+
 require("./style.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -28567,46 +28552,22 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 var Lane = function Lane(_ref) {
-  var title = _ref.title,
-      cards = _ref.cards;
-
-  var _useState = (0, _react.useState)(false),
-      _useState2 = _slicedToArray(_useState, 2),
-      isEditing = _useState2[0],
-      setIsEditing = _useState2[1];
-
+  var title = _ref.title;
+  var cards = (0, _react.useContext)(_LaneContext.LaneContext);
+  console.log(cards);
   return /*#__PURE__*/_react.default.createElement("section", {
     className: "lane"
   }, /*#__PURE__*/_react.default.createElement("h1", {
     className: "title"
-  }, title), isEditing ? /*#__PURE__*/_react.default.createElement(_FormNewCard.default, {
-    addCard: cards,
-    setIsEditing: setIsEditing
-  }) : /*#__PURE__*/_react.default.createElement("button", {
-    onClick: function onClick() {
-      return setIsEditing(true);
-    }
-  }, /*#__PURE__*/_react.default.createElement("ion-icon", {
-    name: "add-outline"
-  })), cards[0]);
+  }, title), /*#__PURE__*/_react.default.createElement(_FormNewCard.default, {
+    addCard: cards
+  }));
 };
 
 var _default = Lane;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","../FormNewCard":"Components/FormNewCard/index.js","./style.scss":"Components/Lane/style.scss"}],"Layout/Main/style.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","../FormNewCard":"Components/FormNewCard/index.js","../../Context/LaneContext":"Context/LaneContext.js","./style.scss":"Components/Lane/style.scss"}],"Layout/Main/style.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -28640,7 +28601,7 @@ module.hot.accept(reloadCSS);
 },{"_css_loader":"../node_modules/parcel/src/builtins/css-loader.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
-var _react = _interopRequireWildcard(require("react"));
+var _react = _interopRequireDefault(require("react"));
 
 var _reactDom = _interopRequireDefault(require("react-dom"));
 
@@ -28652,78 +28613,26 @@ var _Lane = _interopRequireDefault(require("./Components/Lane"));
 
 var _Main = _interopRequireDefault(require("./Layout/Main"));
 
-var _Card = _interopRequireDefault(require("./Components/Card"));
+var _LaneContext = require("./Context/LaneContext");
 
 require("./style.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 var App = function App() {
-  var _useState = (0, _react.useState)([/*#__PURE__*/_react.default.createElement(_Card.default, {
-    title: "Card 01",
-    body: "planejada"
-  })]),
-      _useState2 = _slicedToArray(_useState, 2),
-      cardsPlanejada = _useState2[0],
-      setCardsPlanejada = _useState2[1];
-
-  var _useState3 = (0, _react.useState)([/*#__PURE__*/_react.default.createElement(_Card.default, {
-    title: "Card 01",
-    body: "Executando"
-  })]),
-      _useState4 = _slicedToArray(_useState3, 2),
-      cardsExecutando = _useState4[0],
-      setCardsExecutando = _useState4[1];
-
-  var _useState5 = (0, _react.useState)([/*#__PURE__*/_react.default.createElement(_Card.default, {
-    title: "Card 01",
-    body: "Impasse"
-  })]),
-      _useState6 = _slicedToArray(_useState5, 2),
-      cardsImpasse = _useState6[0],
-      setCardsImpasse = _useState6[1];
-
-  var _useState7 = (0, _react.useState)([/*#__PURE__*/_react.default.createElement(_Card.default, {
-    title: "Card 01",
-    body: "Finalizada"
-  })]),
-      _useState8 = _slicedToArray(_useState7, 2),
-      cardsFinalizada = _useState8[0],
-      setCardsFinalizada = _useState8[1];
-
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_Header.default, null), /*#__PURE__*/_react.default.createElement(_Aside.default, null), /*#__PURE__*/_react.default.createElement(_Main.default, null, /*#__PURE__*/_react.default.createElement(_Lane.default, {
-    title: "Planejada",
-    cards: [cardsPlanejada, setCardsPlanejada]
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_Header.default, null), /*#__PURE__*/_react.default.createElement(_Aside.default, null), /*#__PURE__*/_react.default.createElement(_LaneContext.LaneProvider, null, /*#__PURE__*/_react.default.createElement(_Main.default, null, /*#__PURE__*/_react.default.createElement(_Lane.default, {
+    title: "Planejada"
   }), /*#__PURE__*/_react.default.createElement(_Lane.default, {
-    title: "Executando",
-    cards: [cardsExecutando, setCardsExecutando]
+    title: "Executando"
   }), /*#__PURE__*/_react.default.createElement(_Lane.default, {
-    title: "Impasse",
-    cards: [cardsImpasse, setCardsImpasse]
+    title: "Impasse"
   }), /*#__PURE__*/_react.default.createElement(_Lane.default, {
-    title: "Finalizada",
-    cards: [cardsFinalizada, setCardsFinalizada]
-  })));
+    title: "Finalizada"
+  }))));
 };
 
 _reactDom.default.render( /*#__PURE__*/_react.default.createElement(App, null), document.getElementById("root"));
-},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./Layout/Aside":"Layout/Aside/index.js","./Layout/Header":"Layout/Header/index.js","./Components/Lane":"Components/Lane/index.js","./Layout/Main":"Layout/Main/index.js","./Components/Card":"Components/Card/index.js","./style.scss":"style.scss"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./Layout/Aside":"Layout/Aside/index.js","./Layout/Header":"Layout/Header/index.js","./Components/Lane":"Components/Lane/index.js","./Layout/Main":"Layout/Main/index.js","./Context/LaneContext":"Context/LaneContext.js","./style.scss":"style.scss"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -28751,7 +28660,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45937" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39653" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
