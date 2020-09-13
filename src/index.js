@@ -14,10 +14,10 @@ const App = () => {
       <Aside />
       <LaneProvider>
         <Main>
-          <Lane title="Planejada" />
-          <Lane title="Executando" />
-          <Lane title="Impasse" />
-          <Lane title="Finalizada" />
+          <Lane title="Planejada" id="lane01" />
+          <Lane title="Executando" id="lane02" />
+          <Lane title="Impasse" id="lane03" />
+          <Lane title="Finalizada" id="lane04" />
         </Main>
       </LaneProvider>
     </>

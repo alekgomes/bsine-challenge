@@ -1,17 +1,21 @@
 import React, { useContext } from "react";
 import FormNewCard from "../FormNewCard";
+import Card from "../Card";
 import { LaneContext } from "../../Context/LaneContext";
 import "./style.scss";
 
-const Lane = ({ title }) => {
-  const cards = useContext(LaneContext);
+const Lane = ({ title, id }) => {
+  const { state } = useContext(LaneContext);
 
-  console.log(cards);
+  const cardInformation = state[id].infos;
 
   return (
     <section className="lane">
       <h1 className="title">{title}</h1>
-      <FormNewCard addCard={cards} />
+      <FormNewCard id={id} />
+      {cardInformation.map((info) => (
+        <Card key={info.title} title={info.title} body={info.body} />
+      ))}
     </section>
   );
 };

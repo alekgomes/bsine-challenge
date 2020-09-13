@@ -1,12 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { LaneContext } from "../../Context/LaneContext";
 
 import "./style.scss";
 
-const FormNewCard = () => {
+const FormNewCard = ({ id }) => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
   const [showButton, setShowButton] = useState(true);
+
+  const { addInfos } = useContext(LaneContext);
+
+  const hadleSubmit = (e) => {
+    e.preventDefault();
+    addInfos(id, { title, body });
+  };
 
   return (
     <>
@@ -26,7 +34,7 @@ const FormNewCard = () => {
             placeholder="Mensagem"
             onChange={(e) => setBody(e.target.value)}
           />
-          <button>Salvar</button>
+          <button onClick={(e) => hadleSubmit(e)}>Salvar</button>
           <button onClick={() => setShowButton(true)}>Cancelar</button>
         </form>
       )}
