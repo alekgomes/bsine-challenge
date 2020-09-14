@@ -2,17 +2,17 @@ import React, { useContext, useState } from "react";
 import Modal from "react-modal";
 import { LaneContext } from "../../Context/LaneContext";
 import { ItemTypes } from "../../Constants";
-import { useDrag } from 'react-dnd'
+import { useDrag } from "react-dnd";
 import "./style.scss";
 
 const Card = ({ title, body, laneId }) => {
   Modal.setAppElement("#root");
 
   const [{ isDragging }, drag] = useDrag({
-    item: { type: ItemTypes.CARD },
+    item: { type: ItemTypes.CARD, title, body, laneId },
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),
-    }),
+    })
   });
 
   const { removeInfos } = useContext(LaneContext);

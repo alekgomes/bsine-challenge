@@ -2,18 +2,18 @@ import React, { useContext } from "react";
 import FormNewCard from "../FormNewCard";
 import Card from "../Card";
 import { LaneContext } from "../../Context/LaneContext";
-import {ItemTypes} from '../../Constants'
+import { ItemTypes } from "../../Constants";
 import { useDrop } from "react-dnd";
 import "./style.scss";
 
 const Lane = ({ title, id }) => {
+  const { state, moveCard } = useContext(LaneContext);
+
   const [{ isOver }, drop] = useDrop({
     accept: ItemTypes.CARD,
-    drop: () => console.log(this.title),
-    
+    drop: ({title, laneId}) => moveCard(laneId, title, id),
   });
 
-  const { state } = useContext(LaneContext);
 
   const cardInformation = state[id].infos;
 

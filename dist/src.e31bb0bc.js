@@ -28470,6 +28470,9 @@ var LaneProvider = function LaneProvider(_ref) {
       infos: [{
         title: "Title",
         body: "Body"
+      }, {
+        title: "Teste",
+        body: "Body"
       }]
     },
     lane02: {
@@ -28509,15 +28512,30 @@ var LaneProvider = function LaneProvider(_ref) {
     setSate(currState);
   };
 
-  var moveCard = function moveCard(destinationLane) {
+  var moveCard = function moveCard(souceLane, cardTitle, destinationLane) {
+    console.log(state); // // copy infos
+
     var currState = _objectSpread({}, state);
+
+    var information = currState[souceLane].infos.filter(function (info) {
+      return info.title === cardTitle;
+    })[0];
+    currState[destinationLane].infos = [].concat(_toConsumableArray(currState[destinationLane].infos), [information]);
+    var sourceCardIndex = currState[souceLane].infos.findIndex(function (info) {
+      return info.title === information.title;
+    });
+    currState[souceLane].infos.splice(sourceCardIndex, 1);
+    setSate(currState); // // remove infos
+
+    console.log(state);
   };
 
   return /*#__PURE__*/_react.default.createElement(LaneContext.Provider, {
     value: {
       state: state,
       addInfos: addInfos,
-      removeInfos: removeInfos
+      removeInfos: removeInfos,
+      moveCard: moveCard
     }
   }, children);
 };
@@ -38089,7 +38107,10 @@ var Card = function Card(_ref) {
 
   var _useDrag = (0, _reactDnd.useDrag)({
     item: {
-      type: _Constants.ItemTypes.CARD
+      type: _Constants.ItemTypes.CARD,
+      title: title,
+      body: body,
+      laneId: laneId
     },
     collect: function collect(monitor) {
       return {
@@ -38191,8 +38212,6 @@ var _reactDnd = require("react-dnd");
 
 require("./style.scss");
 
-var _this = void 0;
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
@@ -38215,18 +38234,21 @@ var Lane = function Lane(_ref) {
   var title = _ref.title,
       id = _ref.id;
 
+  var _useContext = (0, _react.useContext)(_LaneContext.LaneContext),
+      state = _useContext.state,
+      moveCard = _useContext.moveCard;
+
   var _useDrop = (0, _reactDnd.useDrop)({
     accept: _Constants.ItemTypes.CARD,
-    drop: function drop() {
-      return console.log(_this.title);
+    drop: function drop(_ref2) {
+      var title = _ref2.title,
+          laneId = _ref2.laneId;
+      return moveCard(laneId, title, id);
     }
   }),
       _useDrop2 = _slicedToArray(_useDrop, 2),
       isOver = _useDrop2[0].isOver,
       drop = _useDrop2[1];
-
-  var _useContext = (0, _react.useContext)(_LaneContext.LaneContext),
-      state = _useContext.state;
 
   var cardInformation = state[id].infos;
   return /*#__PURE__*/_react.default.createElement("section", {
