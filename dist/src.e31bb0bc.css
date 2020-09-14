@@ -35,6 +35,10 @@ form textarea {
   box-sizing: border-box;
   width: 100%;
 }
+.card {
+  position: relative;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
 .card h1 {
   text-align: left;
   font-weight: bold;
@@ -55,7 +59,24 @@ form textarea {
   border-radius: 3px;
   background-color: tomato;
   color: #eaeaea;
-  float: right;
+  position: absolute;
+  height: 26px;
+  top: 0;
+  right: 0;
+  transform: translateX(100%);
+}
+
+.modal__remove {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: tomato;
+  color: white;
+  border: none;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
 }
 section.lane {
   width: 20%;

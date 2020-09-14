@@ -15,9 +15,9 @@ const App = () => {
       <LaneProvider>
         <Main>
           <Lane title="Planejada" id="lane01" />
-          <Lane title="Executando" id="lane02" />
+          {/* <Lane title="Executando" id="lane02" />
           <Lane title="Impasse" id="lane03" />
-          <Lane title="Finalizada" id="lane04" />
+          <Lane title="Finalizada" id="lane04" /> */}
         </Main>
       </LaneProvider>
     </>

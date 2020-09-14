@@ -32,3 +32,19 @@
     transform: translateX(100%);
   }
 }
+
+.modal {
+  &__remove {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: tomato;
+    color: white;
+    border: none;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+  }
+}
+
