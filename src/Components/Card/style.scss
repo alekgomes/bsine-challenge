@@ -6,7 +6,6 @@
   h1 {
     text-align: left;
     font-weight: bold;
-    text-decoration: underline;
     font-size: 1.4rem;
   }
 
@@ -35,6 +34,12 @@
 }
 
 .modal {
+  &__title {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-bottom: 12px;
+  }
+
   &__remove {
     display: inline-block;
     position: absolute;
@@ -48,4 +53,3 @@
     cursor: pointer;
   }
 }
-  

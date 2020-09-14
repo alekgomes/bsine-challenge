@@ -24,9 +24,6 @@ const Card = ({ title, body, laneId }) => {
     setModalIsOpen(false);
   };
 
-  console.log("RENDER");
-  console.log(modalIsOpen);
-
   const customStyles = {
     content: {
       width: "50%",

@@ -1,11 +1,22 @@
 header {
-    width: calc(100vw - 100px);
-    height: 64px;
-    position: fixed;
-    top: 0;
+  width: calc(100vw - 100px);
+  height: 64px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  box-sizing: border-box;
+  padding: 16px 8px;
+
+  .header__user-icons {
+    display: inline-block;
+    width: max-content;
+    position: absolute;
     right: 0;
-    box-sizing: border-box;
-    padding: 16px 8px;
-    grid-row: 1;
-    grid-column: 2;
+    transform: translateX(-100%);
+
+    .user-icon {
+      font-size: 1.5rem;
+      padding: 4px 6px;
+    }
+  }
 }

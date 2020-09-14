@@ -9,7 +9,7 @@ import "./style.scss";
 const Lane = ({ title, id }) => {
   const { state, moveCard } = useContext(LaneContext);
 
-  const [{ isOver }, drop] = useDrop({
+  const [, drop] = useDrop({
     accept: ItemTypes.CARD,
     drop: ({title, laneId}) => moveCard(laneId, title, id),
   });

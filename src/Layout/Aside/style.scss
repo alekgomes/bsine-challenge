@@ -19,5 +19,10 @@ nav {
     box-sizing: border-box;
     font-size: 2rem;
     color: #eaeaea;
+
+    &:hover {
+      background-color: #eaeaea;
+      color: #03254c;
+    }
   }
 }

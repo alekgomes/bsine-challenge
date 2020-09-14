@@ -4,40 +4,79 @@ export const LaneContext = createContext();
 
 export const LaneProvider = ({ children }) => {
   const [state, setSate] = useState({
-    lane01: { id: "lane01", infos: [{ title: "Title", body: "Body" }, { title: "Teste", body: "Body" }] },
-    lane02: { id: "lane02", infos: [] },
-    lane03: { id: "lane03", infos: [{ title: "Title", body: "Body" }] },
-    lane04: { id: "lane04", infos: [] },
+    lane01: {
+      id: "lane01",
+      infos: [
+        {
+          title: "Você pode cliar em um card!",
+          body: "Clique em um card para melhor visualizar suas informações",
+        },
+      ],
+    },
+    lane02: {
+      id: "lane02",
+      infos: [
+        {
+          title: "Arraste esse card",
+          body: "Clique e arraste esse card para qualquer lane",
+        },
+      ],
+    },
+    lane03: {
+      id: "lane03",
+      infos: [
+        {
+          title: "É possível adicionar cards!",
+          body: "Clique no botão + para criar um novo card ",
+        },
+      ],
+    },
+    lane04: {
+      id: "lane04",
+      infos: [
+        {
+          title: "É possível remover um card!",
+          body: "Clique no X ao lado do card para excluí-lo ",
+        },
+      ],
+    },
   });
 
   const addInfos = (laneId, information) => {
     const currState = { ...state };
-    currState[laneId].infos = [...currState[laneId].infos, information]
+    currState[laneId].infos = [...currState[laneId].infos, information];
     setSate(currState);
   };
 
   const removeInfos = (laneId, infoTitle) => {
     const currState = { ...state };
-    const itemIdex = currState[laneId].infos.findIndex((title) => title === infoTitle)
-    currState[laneId].infos.splice(itemIdex, 1)
-    setSate(currState)
-  }
+    const itemIdex = currState[laneId].infos.findIndex(
+      (title) => title === infoTitle
+    );
+    currState[laneId].infos.splice(itemIdex, 1);
+    setSate(currState);
+  };
 
   const moveCard = (souceLane, cardTitle, destinationLane) => {
-    console.log(state)
     // // copy infos
     const currState = { ...state };
-    const information = currState[souceLane].infos.filter((info) => info.title === cardTitle)[0]
-    currState[destinationLane].infos = [...currState[destinationLane].infos, information]
+    const sourceArray = currState[souceLane].infos;
+    const information = sourceArray.filter(
+      (info) => info.title === cardTitle
+    )[0];
+    currState[destinationLane].infos = [
+      ...currState[destinationLane].infos,
+      information,
+    ];
 
-    const sourceCardIndex = currState[souceLane].infos.findIndex(info => info.title === information.title)
-    currState[souceLane].infos.splice(sourceCardIndex, 1)
-
-
-    setSate(currState)
     // // remove infos
-    console.log(state)
-  }
+    const sourceCardIndex = sourceArray.findIndex(
+      (info) => info.title === information.title
+    );
+    sourceArray.splice(sourceCardIndex, 1);
+
+    setSate(currState);
+  };
 
   return (
     <LaneContext.Provider value={{ state, addInfos, removeInfos, moveCard }}>

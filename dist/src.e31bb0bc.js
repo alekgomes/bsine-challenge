@@ -28393,7 +28393,42 @@ var Aside = function Aside() {
 
 var _default = Aside;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","./style.scss":"Layout/Aside/style.scss"}],"Layout/Header/style.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./style.scss":"Layout/Aside/style.scss"}],"Components/SearchBox/style.scss":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../node_modules/parcel/src/builtins/css-loader.js"}],"Components/SearchBox/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+require("./style.scss");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var SearchBox = function SearchBox() {
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "search-box"
+  }, /*#__PURE__*/_react.default.createElement("input", {
+    className: "search-box__input",
+    type: "text",
+    placeholder: "Pesquisar"
+  }), /*#__PURE__*/_react.default.createElement("span", {
+    className: "search-box__icon"
+  }, /*#__PURE__*/_react.default.createElement("ion-icon", {
+    name: "search-outline"
+  })));
+};
+
+var _default = SearchBox;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js","./style.scss":"Components/SearchBox/style.scss"}],"Layout/Header/style.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -28408,17 +28443,33 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
+var _SearchBox = _interopRequireDefault(require("../../Components/SearchBox"));
+
 require("./style.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Header = function Header() {
-  return /*#__PURE__*/_react.default.createElement("header", null, "Logo da marca");
+  return /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement("span", null, "Logo da marca"), /*#__PURE__*/_react.default.createElement(_SearchBox.default, null), /*#__PURE__*/_react.default.createElement("div", {
+    className: "header__user-icons"
+  }, /*#__PURE__*/_react.default.createElement("span", {
+    className: "user-icon"
+  }, /*#__PURE__*/_react.default.createElement("ion-icon", {
+    name: "apps-outline"
+  })), /*#__PURE__*/_react.default.createElement("span", {
+    className: "user-icon"
+  }, /*#__PURE__*/_react.default.createElement("ion-icon", {
+    name: "notifications"
+  })), /*#__PURE__*/_react.default.createElement("span", {
+    className: "user-icon"
+  }, /*#__PURE__*/_react.default.createElement("ion-icon", {
+    name: "person"
+  }))));
 };
 
 var _default = Header;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","./style.scss":"Layout/Header/style.scss"}],"Context/LaneContext.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","../../Components/SearchBox":"Components/SearchBox/index.js","./style.scss":"Layout/Header/style.scss"}],"Context/LaneContext.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28468,27 +28519,30 @@ var LaneProvider = function LaneProvider(_ref) {
     lane01: {
       id: "lane01",
       infos: [{
-        title: "Title",
-        body: "Body"
-      }, {
-        title: "Teste",
-        body: "Body"
+        title: "Você pode cliar em um card!",
+        body: "Clique em um card para melhor visualizar suas informações"
       }]
     },
     lane02: {
       id: "lane02",
-      infos: []
+      infos: [{
+        title: "Arraste esse card",
+        body: "Clique e arraste esse card para qualquer lane"
+      }]
     },
     lane03: {
       id: "lane03",
       infos: [{
-        title: "Title",
-        body: "Body"
+        title: "É possível adicionar cards!",
+        body: "Clique no botão + para criar um novo card "
       }]
     },
     lane04: {
       id: "lane04",
-      infos: []
+      infos: [{
+        title: "É possível remover um card!",
+        body: "Clique no X ao lado do card para excluí-lo "
+      }]
     }
   }),
       _useState2 = _slicedToArray(_useState, 2),
@@ -28513,21 +28567,20 @@ var LaneProvider = function LaneProvider(_ref) {
   };
 
   var moveCard = function moveCard(souceLane, cardTitle, destinationLane) {
-    console.log(state); // // copy infos
-
+    // // copy infos
     var currState = _objectSpread({}, state);
 
-    var information = currState[souceLane].infos.filter(function (info) {
+    var sourceArray = currState[souceLane].infos;
+    var information = sourceArray.filter(function (info) {
       return info.title === cardTitle;
     })[0];
-    currState[destinationLane].infos = [].concat(_toConsumableArray(currState[destinationLane].infos), [information]);
-    var sourceCardIndex = currState[souceLane].infos.findIndex(function (info) {
+    currState[destinationLane].infos = [].concat(_toConsumableArray(currState[destinationLane].infos), [information]); // // remove infos
+
+    var sourceCardIndex = sourceArray.findIndex(function (info) {
       return info.title === information.title;
     });
-    currState[souceLane].infos.splice(sourceCardIndex, 1);
-    setSate(currState); // // remove infos
-
-    console.log(state);
+    sourceArray.splice(sourceCardIndex, 1);
+    setSate(currState);
   };
 
   return /*#__PURE__*/_react.default.createElement(LaneContext.Provider, {
@@ -38135,8 +38188,6 @@ var Card = function Card(_ref) {
     setModalIsOpen(false);
   };
 
-  console.log("RENDER");
-  console.log(modalIsOpen);
   var customStyles = {
     content: {
       width: "50%",
@@ -38247,7 +38298,6 @@ var Lane = function Lane(_ref) {
     }
   }),
       _useDrop2 = _slicedToArray(_useDrop, 2),
-      isOver = _useDrop2[0].isOver,
       drop = _useDrop2[1];
 
   var cardInformation = state[id].infos;
@@ -39846,7 +39896,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "44575" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37351" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
