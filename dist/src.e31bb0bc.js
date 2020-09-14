@@ -31207,7 +31207,7 @@ var Card = function Card(_ref) {
     onClick: function onClick() {
       setModalIsOpen(true);
     }
-  }, /*#__PURE__*/_react.default.createElement("h1", null, title), /*#__PURE__*/_react.default.createElement("p", {
+  }, /*#__PURE__*/_react.default.createElement("h1", null, title), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("p", {
     className: "body"
   }, body), /*#__PURE__*/_react.default.createElement("button", {
     onClick: function onClick() {
@@ -31345,6 +31345,15 @@ var App = function App() {
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_Header.default, null), /*#__PURE__*/_react.default.createElement(_Aside.default, null), /*#__PURE__*/_react.default.createElement(_LaneContext.LaneProvider, null, /*#__PURE__*/_react.default.createElement(_Main.default, null, /*#__PURE__*/_react.default.createElement(_Lane.default, {
     title: "Planejada",
     id: "lane01"
+  }), /*#__PURE__*/_react.default.createElement(_Lane.default, {
+    title: "Executando",
+    id: "lane02"
+  }), /*#__PURE__*/_react.default.createElement(_Lane.default, {
+    title: "Impasse",
+    id: "lane03"
+  }), /*#__PURE__*/_react.default.createElement(_Lane.default, {
+    title: "Finalizada",
+    id: "lane04"
   }))));
 };
 
@@ -31377,7 +31386,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43331" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "44575" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

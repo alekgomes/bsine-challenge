@@ -43,6 +43,7 @@ const Card = ({ title, body, laneId }) => {
       }}
     >
       <h1>{title}</h1>
+      <br/>
       <p className="body">{body}</p>
       <button onClick={() => removeInfos(laneId, title)} className="remove">
         X
