@@ -1,18 +1,26 @@
 import React, { useContext, useState } from "react";
-import CardModal from "../CardModal";
 import Modal from "react-modal";
 import { LaneContext } from "../../Context/LaneContext";
+import { ItemTypes } from "../../Constants";
+import { useDrag } from 'react-dnd'
 import "./style.scss";
 
 const Card = ({ title, body, laneId }) => {
-  Modal.setAppElement("#root")
-  
+  Modal.setAppElement("#root");
+
+  const [{ isDragging }, drag] = useDrag({
+    item: { type: ItemTypes.CARD },
+    collect: (monitor) => ({
+      isDragging: !!monitor.isDragging(),
+    }),
+  });
+
   const { removeInfos } = useContext(LaneContext);
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const closeModal = (e) => {
-    e.stopPropagation()
+    e.stopPropagation();
     setModalIsOpen(false);
   };
 
@@ -37,31 +45,32 @@ const Card = ({ title, body, laneId }) => {
 
   return (
     <div
+      ref={drag}
       className="card"
       onClick={() => {
         setModalIsOpen(true);
       }}
     >
       <h1>{title}</h1>
-      <br/>
+      <br />
       <p className="body">{body}</p>
       <button onClick={() => removeInfos(laneId, title)} className="remove">
         X
       </button>
-      
+
       <Modal
         isOpen={modalIsOpen}
         style={customStyles}
-        onRequestClose={(e) => {closeModal(e)}}
-        
+        onRequestClose={(e) => {
+          closeModal(e);
+        }}
       >
         <h1 className="modal__title">{title}</h1>
         <p className="modal__body">{body}</p>
-        <button className="modal__remove" onClick={(e) =>  closeModal(e)}>
+        <button className="modal__remove" onClick={(e) => closeModal(e)}>
           X
         </button>
       </Modal>
-      
     </div>
   );
 };
